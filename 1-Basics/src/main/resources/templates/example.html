@@ -6,7 +6,7 @@
 <body>
     <h1>Data: <span th:text="${data}"></span></h1>
 
-    <form action="/UPDATE" method="post">
+    <form th:action="@{/UPDATE}" method="post">
         <label for="data">New Data:</label>
         <input type="text" name="userInput" required/>
         <button type="submit">Update</button>
