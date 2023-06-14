@@ -13,16 +13,18 @@ public class UserController {
 
     private Boolean formSubmited = false;   // Atribute to check if the form was sucessfull sent
     
-    // Render the Form
+    // Render the FORM to the user
+    // Passa um objeto "User" VAZIO para o form
     @GetMapping("/user-form")
     public String showUserForm(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new User()); // Model -> Envia pro front
         return "user-form";
     }
     
     // FORM field validation
+    // Recebe do FORM um objeto "User" preenchido com os FIELDS do FORM
     @PostMapping("/user-form")
-    public String submitUserForm(@Valid User user, BindingResult bindingResult) {
+    public String submitUserForm(@Valid User user, BindingResult bindingResult) {  
         if (bindingResult.hasErrors()) {
             return "user-form";
         }
@@ -31,7 +33,7 @@ public class UserController {
         return "redirect:/success";
     }
 
-    // Check if the form was correctly sent
+    // Show Success only if the form was correctly sent
     @GetMapping("/success")
     public String showSuccessPage() {
         if (formSubmited) {
