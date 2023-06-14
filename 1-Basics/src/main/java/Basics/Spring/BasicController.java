@@ -36,7 +36,7 @@ public class BasicController {
         // Process the submitted data
         String message = "Hello, " + name + "!";
 
-        // Add the processed data to the model
+        // Add the processed data to the model for "result"
         model.addAttribute("message", message);
 
         // Return the name of the Thymeleaf template
