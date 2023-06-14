@@ -36,7 +36,7 @@ public class BasicController {
         // Process the submitted data
         String message = "Hello, " + name + "!";
 
-        // Add the processed data to the model for "result"
+        // Add the processed data to the model for "result" ( APENAS ACESSÍVEL EM "result")
         model.addAttribute("message", message);
 
         // Return the name of the Thymeleaf template
