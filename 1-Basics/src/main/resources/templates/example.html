@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Example</title>
+</head>
+<body>
+    <h1>Data: <span th:text="${data}"></span></h1>
+
+    <form action="/UPDATE" method="post">
+        <label for="data">New Data:</label>
+        <input type="text" name="userInput" required/>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

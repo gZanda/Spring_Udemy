@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Sales </title>
+</head>
+<body>
+    <p th:if="${sales > 50}" >Sales are good!</p>           <!-- Positive IF -->
+    <p th:unless="${sales > 50}" >Sales are NOT good!</p>   <!-- Else -->
+    <div th:switch="${product}">
+        <p th:case="'a'"> Cellphone </p>
+        <p th:case="'b'"> TV </p>
+        <p th:case="*"> Other </p>
+    </div>
+</body>
+</html>

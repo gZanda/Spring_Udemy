@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Form</title>
+</head>
+<body>
+    <h1>User Form</h1>
+    <form th:action="@{/user-form}" th:object="${user}" method="post">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" />
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email" th:field="*{email}" />
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        </div>
+        <div>
+            <label for="score">Score:</label>
+            <input type="text" id="score" th:field="*{score}" />
+            <span th:if="${#fields.hasErrors('score')}" th:errors="*{score}"></span>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

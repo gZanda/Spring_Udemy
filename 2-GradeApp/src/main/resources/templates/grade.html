@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head> 
+    <title> Grades </title>
+    <link th:href="@{/gradesStyle.css}" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="topnav">
+      <a>Form</a>
+      <a>Grades</a>
+    </div>
+
+    <div class= "container">
+      <h2 > Grades </h2>
+      <table id="table"> 
+        <tr>
+          <th>Student</th>
+          <th>Subject</th>
+          <th>Score</th>
+        </tr>
+
+        <tr th:object="${grade}">
+
+            <!-- Opção de Atributo-->
+
+            <td th:text="*{name}"></td> 
+            <td th:text="*{subject}"></td>
+            <td th:text="*{score}"></td>
+
+            <!-- Opção de variável
+
+            <td th:text="${grade.name}"></td>
+            <td th:text="${grade.subject}"></td>
+            <td th:text="${grade.score}"></td>
+
+            -->
+        </tr>
+      </table>
+    </div>
+    
+  </body>
+</html>
