@@ -1,7 +1,4 @@
-package Three.Layer;
-
-import java.util.ArrayList;
-import java.util.List;
+package Three.Layer.Controller;
 
 import jakarta.validation.Valid;
 
@@ -12,16 +9,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import Three.Layer.Constants;
+import Three.Layer.Grade;
+import Three.Layer.Repository.GradeRepository;
+
 
 @Controller
 public class GradeController {
 
-    List<Grade> studentGrades = new ArrayList<>();
+    // Instance of the REPOSITORY
+    GradeRepository repository = new GradeRepository();
 
     @GetMapping("/")
     public String getForm(Model model, @RequestParam(required = false) String id) {
-        int index = getGradeIndex(id);
-        model.addAttribute("grade", index == Constants.NOT_FOUND ? new Grade() : studentGrades.get(index));
+        int index = getGradeIndex(id);                                                          
+        model.addAttribute("grade", index == Constants.NOT_FOUND ? new Grade() : repository.getGrade(index));
         return "form";
     }
 
@@ -31,22 +33,22 @@ public class GradeController {
 
         int index = getGradeIndex(grade.getId());
         if (index == Constants.NOT_FOUND) {
-            studentGrades.add(grade);
+            repository.addGrade(grade);
         } else {
-            studentGrades.set(index, grade);
+            repository.updateGrade(grade, index);
         }
         return "redirect:/grades";
     }
 
     @GetMapping("/grades")
     public String getGrades(Model model) {
-        model.addAttribute("grades", studentGrades);
+        model.addAttribute("grades", repository.getGrades());
         return "grades";
     }
 
     public int getGradeIndex(String id) {
-        for (int i = 0; i < studentGrades.size(); i++) {
-            if (studentGrades.get(i).getId().equals(id)) return i;
+        for (int i = 0; i < repository.getGrades().size(); i++) {
+            if (repository.getGrades().get(i).getId().equals(id)) return i;
         }
         return Constants.NOT_FOUND;
     }
