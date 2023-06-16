@@ -23,7 +23,7 @@ public class GradeController {
     // ACOPLAMENTO !!!!! - Não queremos isso
     // GradeService service = new GradeService();
 
-    // Injection
+    // Injection - Do bean @Service - Classe GradeService
     @Autowired
     GradeService service;
 

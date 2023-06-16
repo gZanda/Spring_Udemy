@@ -3,17 +3,17 @@ package Three.Layer.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import Three.Layer.Constants;
 import Three.Layer.Grade;
 import Three.Layer.Repository.GradeRepository;
 
-// No escopo do SPRING
-@Component
+// Bean escopo do SPRING
+@Service
 public class GradeService {
 
-    // Instância do Repositório
+    // Injection - Do Bean @Repository - Classe GradeRepository
     @Autowired
     GradeRepository repository;
 

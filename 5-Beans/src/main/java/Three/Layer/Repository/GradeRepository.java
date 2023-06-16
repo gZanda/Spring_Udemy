@@ -3,12 +3,13 @@ package Three.Layer.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import Three.Layer.Grade;
 
 // A ÚNICA CLASSE que vai mexer na base de dados
-@Component
+// Bean no escopo do SPRING
+@Repository
 public class GradeRepository {
     
     // Base de dados
