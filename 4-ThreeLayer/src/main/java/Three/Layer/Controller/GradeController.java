@@ -9,48 +9,38 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import Three.Layer.Constants;
 import Three.Layer.Grade;
-import Three.Layer.Repository.GradeRepository;
+import Three.Layer.Service.GradeService;
 
 
 @Controller
 public class GradeController {
 
-    // Instance of the REPOSITORY
-    GradeRepository repository = new GradeRepository();
+    // Instance of the REPOSITORY ( Controller não pode interagir diretamente com Repository )
+    //GradeRepository repository = new GradeRepository();
+
+    // Instance of SERVICE ( Controller interage com o Repository pelo Service )
+    GradeService service = new GradeService();
 
     @GetMapping("/")
-    public String getForm(Model model, @RequestParam(required = false) String id) {
-        int index = getGradeIndex(id);                                                          
-        model.addAttribute("grade", index == Constants.NOT_FOUND ? new Grade() : repository.getGrade(index));
+    public String getForm(Model model, @RequestParam(required = false) String id) {                                                
+        model.addAttribute("grade", service.getGradeById(id));
         return "form";
     }
 
     @PostMapping("/handleSubmit")
     public String submitForm(@Valid Grade grade, BindingResult result) {
+        // IF
         if (result.hasErrors()) return "form";
-
-        int index = getGradeIndex(grade.getId());
-        if (index == Constants.NOT_FOUND) {
-            repository.addGrade(grade);
-        } else {
-            repository.updateGrade(grade, index);
-        }
+        // ELSE
+        service.submitGrade(grade);
         return "redirect:/grades";
     }
 
     @GetMapping("/grades")
     public String getGrades(Model model) {
-        model.addAttribute("grades", repository.getGrades());
+        model.addAttribute("grades", service.getGrades());
         return "grades";
-    }
-
-    public int getGradeIndex(String id) {
-        for (int i = 0; i < repository.getGrades().size(); i++) {
-            if (repository.getGrades().get(i).getId().equals(id)) return i;
-        }
-        return Constants.NOT_FOUND;
     }
 
 }
