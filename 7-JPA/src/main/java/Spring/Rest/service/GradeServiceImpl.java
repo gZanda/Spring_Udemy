@@ -2,8 +2,11 @@ package Spring.Rest.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import Spring.Rest.entity.Grade;
 
+@Service
 public class GradeServiceImpl implements GradeService {
     
     @Override

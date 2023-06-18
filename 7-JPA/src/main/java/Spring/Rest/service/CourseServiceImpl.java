@@ -3,8 +3,11 @@ package Spring.Rest.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import Spring.Rest.entity.Course;
 
+@Service
 public class CourseServiceImpl implements CourseService {
 
     @Override
