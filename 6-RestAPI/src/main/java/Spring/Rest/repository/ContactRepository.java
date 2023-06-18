@@ -14,10 +14,6 @@ public class ContactRepository {
     // Data base ( pré-populada ou não )
     private List<Contact> contacts = new ArrayList<>();
 
-    // EU TESTANDO 
-    // COlocando 1 na base de dados já
-    Contact x = new Contact("1","Zanda","123");
-
     public List<Contact> getContacts() {
         return contacts;
     }

@@ -1,16 +1,19 @@
 package Spring.Rest.pojo;
 
 
-import java.util.UUID;
+// import java.util.UUID;
 
 public class Contact {
 
+    // Aux
+    private static int idCounter = 0;
     private String id;
     private String name;
     private String phoneNumber;
 
     public Contact() {
-        this.id = UUID.randomUUID().toString();
+        idCounter++;
+        this.id = String.valueOf(idCounter);
     }
 
     public Contact(String id, String name, String phone){
