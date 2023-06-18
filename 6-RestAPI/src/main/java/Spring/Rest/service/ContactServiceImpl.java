@@ -27,4 +27,9 @@ public class ContactServiceImpl implements ContactService {
         .orElseThrow();
     }
 
+    @Override
+    public void saveContact(Contact contact) {
+        contactRepository.saveContact(contact);
+    }
+
 }

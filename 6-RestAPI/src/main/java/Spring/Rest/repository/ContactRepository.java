@@ -1,6 +1,6 @@
 package Spring.Rest.repository;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -11,12 +11,12 @@ import Spring.Rest.pojo.Contact;
 @Repository
 public class ContactRepository {
     
-    // Data base ( pré-populada )
-    private List<Contact> contacts = Arrays.asList(
-        new Contact("1","Zanda","123"),
-        new Contact("2","Marcelo","456"),
-        new Contact("3","Edson","789")       
-    );
+    // Data base ( pré-populada ou não )
+    private List<Contact> contacts = new ArrayList<>();
+
+    // EU TESTANDO 
+    // COlocando 1 na base de dados já
+    Contact x = new Contact("1","Zanda","123");
 
     public List<Contact> getContacts() {
         return contacts;
