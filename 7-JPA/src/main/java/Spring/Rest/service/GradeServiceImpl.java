@@ -2,21 +2,33 @@ package Spring.Rest.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Spring.Rest.entity.Grade;
+import Spring.Rest.entity.Student;
+import Spring.Rest.repository.GradeRepository;
+import Spring.Rest.repository.StudentRepository;
 
 @Service
 public class GradeServiceImpl implements GradeService {
     
+    @Autowired
+    StudentRepository studentRepository;
+    @Autowired
+    GradeRepository gradeRepository;
+
     @Override
     public Grade getGrade(Long studentId, Long courseId) {
         return null;
     }
 
+    // POST usando o CRUD
     @Override
     public Grade saveGrade(Grade grade, Long studentId, Long courseId) {
-        return null;
+        Student student = studentRepository.findById(studentId).get();
+        grade.setStudent(student);  // associa um STUDENT com uma GRADE
+        return gradeRepository.save(grade);
     }
 
     @Override
