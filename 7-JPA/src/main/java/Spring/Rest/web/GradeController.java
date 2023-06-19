@@ -24,9 +24,10 @@ public class GradeController {
     @Autowired
     GradeService gradeService;
     
+    // GET - Retorna a nota buscando através do ID fornecido
     @GetMapping("/student/{studentId}/course/{courseId}")
     public ResponseEntity<Grade> getGrade(@PathVariable Long studentId, @PathVariable Long courseId) {
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(gradeService.getGrade(studentId, courseId),HttpStatus.OK);
     }
 
     // POST

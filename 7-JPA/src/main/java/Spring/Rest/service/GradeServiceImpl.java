@@ -18,9 +18,10 @@ public class GradeServiceImpl implements GradeService {
     @Autowired
     GradeRepository gradeRepository;
 
+    // Usando o método PERSONALIZADO do CRUD
     @Override
     public Grade getGrade(Long studentId, Long courseId) {
-        return null;
+        return gradeRepository.findByStudentId(studentId);
     }
 
     // POST usando o CRUD
