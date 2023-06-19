@@ -15,24 +15,28 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentRepository studentRepository;
 
+    // GET Usando o CRUD
     @Override
     public Student getStudent(Long id) {
-        return null;
+        return studentRepository.findById(id).get();
     }
 
-    // Usando o Respository
+    // POST Usando o CRUD
     @Override
     public Student saveStudent(Student student) {
         return studentRepository.save(student);
     }
 
+    // DELETE usando o CRUD
     @Override
-    public void deleteStudent(Long id) {        
+    public void deleteStudent(Long id) {  
+        studentRepository.deleteById(id);      
     }
 
+    // GET ALL usando o CRUD
     @Override
     public List<Student> getStudents() {
-        return null;
+        return (List<Student>) studentRepository.findAll(); // Casting
     }
 
 

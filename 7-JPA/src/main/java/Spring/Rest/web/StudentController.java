@@ -23,9 +23,10 @@ public class StudentController {
     @Autowired
     StudentService studentService;
     
+    // Encontrar UM único student pelo ID
     @GetMapping("/{id}")
     public ResponseEntity<Student> getStudent(@PathVariable Long id) {
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(studentService.getStudent(id), HttpStatus.OK);
     }
 
     // Salvar no BD um novo STUDENT
@@ -34,14 +35,17 @@ public class StudentController {
         return new ResponseEntity<>(studentService.saveStudent(student), HttpStatus.CREATED);
     }
 
+    // Deletar um student pelo ID
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteStudent(@PathVariable Long id) {
+        studentService.deleteStudent(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    // Retornar TODOS os students
     @GetMapping("/all")
     public ResponseEntity<List<Student>> getStudents() {
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(studentService.getStudents(), HttpStatus.OK);
     }
 
 
